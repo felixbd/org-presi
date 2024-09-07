@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between; /* This will space the logos as far apart as possible */
+  align-items: center; /* This will vertically center the logos */
+  padding: 10px; /* Adjust as needed for spacing inside the header */
+  /* background-color: darkgray; /* Optional: background color for the header */
+}
+
+.logo {
+  height: 50px; /* Adjust the size of your logos as needed */
+  /* Add other styling if necessary */
+}

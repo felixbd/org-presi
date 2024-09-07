@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>example presi</title>
+<meta name="author" content="Felix Drees"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="./local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+<header class="header">
+<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="Logo 1" class="logo"  style="background-color:gray;">
+<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png" alt="Logo 2" class="logo"  style="background-color:gray;">
+</header>
+<style>*{font-family: 'Fira Code', monospace; !important}</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">example presi</h1><p class="subtitle"></p>
+<h2 class="author">Felix Drees</h2><p class="date">Created: 2024-09-07 Sat 13:53</p>
+</section>
+
+
+
+<section>
+<section id="slide-org49ede3d" data-auto-animate>
+<h2 id="org49ede3d">to do list</h2>
+<div class="org-src-container">
+
+<pre  class="src src-python"   data-id="bar" ><code trim><span class="linenr"> 1: </span><span style="color: #51afef;">from</span> datetime <span style="color: #51afef;">import</span> datetime
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">exam_dates</span> = {
+<span class="linenr"> 4: </span>    <span style="color: #98be65;">"mathematics"</span>: <span style="color: #98be65;">"12.09"</span>,
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"geography"</span>: <span style="color: #98be65;">"20.10"</span>,
+<span class="linenr"> 6: </span>    <span style="color: #98be65;">"conference"</span>: <span style="color: #98be65;">"30.09"</span>,
+<span class="linenr"> 7: </span>}
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">today</span> = datetime.now()
+<span class="linenr">10: </span><span style="color: #dcaeea;">exam_list</span> = []
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org49ede3d-split" data-auto-animate>
+
+<h2>to do list</h2>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"   data-id="bar" ><code trim><span class="linenr">12: </span><span style="color: #dcaeea;">today</span> = datetime.now()
+<span class="linenr">13: </span><span style="color: #dcaeea;">exam_list</span> = []
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #51afef;">for</span> subject, date_str <span style="color: #51afef;">in</span> exam_dates.items():
+<span class="linenr">16: </span>    <span style="color: #dcaeea;">exam_d</span> = datetime.strptime(
+<span class="linenr">17: </span>        f<span style="color: #98be65;">"</span>{date_str}<span style="color: #98be65;">.</span>{today.year}<span style="color: #98be65;">"</span>, <span style="color: #98be65;">"%d.%m.%Y"</span>)
+<span class="linenr">18: </span>    <span style="color: #dcaeea;">rem_days</span> = (exam_d - today).days
+<span class="linenr">19: </span>    exam_list.append((f<span style="color: #98be65;">"</span>{subject}<span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">@ </span>{exam_d}<span style="color: #98be65;">"</span>, rem_days))
+<span class="linenr">20: </span>
+<span class="linenr">21: </span>exam_list.sort(key=<span style="color: #51afef;">lambda</span> x: x[<span style="color: #da8548; font-weight: bold;">1</span>])
+<span class="linenr">22: </span>
+<span class="linenr">23: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>.join([f<span style="color: #98be65;">'[</span><span style="color: #ECBE7B; font-weight: bold;">TODO</span><span style="color: #98be65;"> in </span>{rd:_&gt;2}<span style="color: #98be65;">]: </span>{subject}<span style="color: #98be65;">'</span>
+<span class="linenr">24: </span>                 <span style="color: #51afef;">if</span> rd &gt; -<span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">25: </span>                 <span style="color: #51afef;">else</span> f<span style="color: #98be65;">'[DONE: </span>{subject}<span style="color: #98be65;">]'</span>
+<span class="linenr">26: </span>                 <span style="color: #51afef;">for</span> subject, rd <span style="color: #51afef;">in</span> exam_list]))
+</code></pre>
+</div>
+
+
+</section>
+<section id="slide-org49ede3d-split" data-auto-animate>
+
+<h2>to do list</h2>
+
+<pre class="example" id="orgca71634">
+[TODO in _4]: mathematics	@ 2024-09-12 00:00:00
+[TODO in 22]: conference	@ 2024-09-30 00:00:00
+[TODO in 42]: geography 	@ 2024-10-20 00:00:00
+</pre>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgb480c44">
+<h2 id="orgb480c44">some Haskell example</h2>
+<div class="org-src-container">
+
+<pre  class="src src-haskell"   ><code trim><span class="linenr">0: </span>print <span style="color: #c678dd;">$</span> show <span style="color: #dcaeea;">&lt;$&gt;</span> (<span style="color: #ECBE7B;">Just</span> <span style="color: #da8548; font-weight: bold;">56</span>)
+<span class="linenr">1: </span>print <span style="color: #c678dd;">$</span> <span style="color: #ECBE7B;">Just</span> <span style="color: #da8548; font-weight: bold;">10</span> <span style="color: #dcaeea;">&gt;&gt;=</span> <span style="color: #dcaeea;">\</span>x <span style="color: #dcaeea;">-&gt;</span> <span style="color: #ECBE7B;">Just</span> <span style="color: #dcaeea;">$</span> x <span style="color: #dcaeea;">+</span> <span style="color: #da8548; font-weight: bold;">2</span>
+<span class="linenr">2: </span>print <span style="color: #c678dd;">$</span> <span style="color: #ECBE7B;">Nothing</span> <span style="color: #dcaeea;">&gt;&gt;=</span> <span style="color: #dcaeea;">\</span>x <span style="color: #dcaeea;">-&gt;</span> <span style="color: #ECBE7B;">Just</span> <span style="color: #dcaeea;">$</span> show x
+</code></pre>
+</div>
+
+<pre class="example" id="org004853a">
+Just "56"
+Just 12
+Nothing
+</pre>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org259acb5">
+<h2 id="org259acb5">test</h2>
+<ul>
+<li data-fragment-index="4" class="fragment grow">I will grow.</li>
+<li data-fragment-index="3" class="fragment shrink">I will shrink.</li>
+<li data-fragment-index="2" class="fragment roll-in">I rolled in.</li>
+<li data-fragment-index="1" class="fragment fade-out">I will fade out.</li>
+<li>I don&rsquo;t fragment.</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc618a7b">
+<h2 id="orgc618a7b">Mathematics</h2>
+<p>
+\[ \mathrm{isPrime}(x) = \left\{ \begin{array}{ll} {0}, & \mathrm{if} \ {x \le {1}} \\ {1}, & \mathrm{if} \ {x = {2}} \\ \mathrm{recHelp}\left(x, {3}\right), & \mathrm{otherwise} \end{array} \right. \]
+</p>
+
+<p>
+where <code>0</code> is <code>False</code> and <code>1</code> is <code>True</code>
+</p>
+
+</section>
+<section id="slide-orgc618a7b-split">
+
+<p>
+\[ \mathrm{recHelp}(x, d) = \left\{ \begin{array}{ll} {0}, & \mathrm{if} \ {x \mathbin{\%} {2} = {0}} \\ {1}, & \mathrm{if} \ {d > \left\lfloor{\sqrt{x}}\right\rfloor} \\ {0}, & \mathrm{if} \ {x \mathbin{\%} d = {0}} \\ \mathrm{recHelp}\left(x, d + {2}\right), & \mathrm{otherwise} \end{array} \right. \]
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+
+</script>
+</body>
+</html>

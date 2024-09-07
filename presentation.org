@@ -1,0 +1,148 @@
+# presentation in org-mode with org-reveal -*- mode: org; coding: utf-8; -*-
+
+:properties:
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation]
+# +LaTeX_CLASS_OPTIONS: [bigger]
+#+OPTIONS: H:1 toc:nil num:nil reveal_global_header:t reveal_global_footer:t
+
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_EXTRA_CSS: ./local.css
+
+#+HTML_HEAD: <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+#+HTML_HEAD_EXTRA: <style>*{font-family: 'Fira Code', monospace; !important}</style>
+
+# +REVEAL_SLIDE_HEADER: University | Institute
+# +REVEAL_SLIDE_FOOTER: uni | institute
+
+#+HTML_HEAD: <header class="header">
+#+HTML_HEAD:  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="Logo 1" class="logo"  style="background-color:gray;">
+#+HTML_HEAD:  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/cc-zero.png" alt="Logo 2" class="logo"  style="background-color:gray;">
+#+HTML_HEAD: </header>
+
+#+EXPORT_FILE_NAME: index
+:end:
+
+#+title: example presi
+# +subtitle: in emacs org-mode
+#+author: Felix Drees
+
+
+* to do list
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: data-auto-animate
+:END:
+
+# +REVEAL_PLUGINS: (highlight)
+
+#+ATTR_REVEAL: :data_id bar
+#+begin_src python -n :results none :exports code :session test1
+from datetime import datetime
+
+exam_dates = {
+    "mathematics": "12.09",
+    "geography": "20.10",
+    "conference": "30.09",
+}
+
+today = datetime.now()
+exam_list = []
+#+end_src
+
+#+REVEAL: split:t
+
+#+ATTR_REVEAL: :data_id bar
+#+begin_src python -n 12 :results none :exports code :session test1
+today = datetime.now()
+exam_list = []
+
+for subject, date_str in exam_dates.items():
+    exam_d = datetime.strptime(
+        f"{date_str}.{today.year}", "%d.%m.%Y")
+    rem_days = (exam_d - today).days
+    exam_list.append((f"{subject}\t@ {exam_d}", rem_days))
+
+exam_list.sort(key=lambda x: x[1])
+
+print('\n'.join([f'[TODO in {rd:_>2}]: {subject}'
+                 if rd > -1
+                 else f'[DONE: {subject}]'
+                 for subject, rd in exam_list]))
+#+end_src
+
+
+# +BEGIN_SRC python -n :results output list :exports results
+#+NAME: EXAMdeadlines
+#+BEGIN_SRC python -n :results output drawer pp :exports results
+from datetime import datetime
+
+exam_dates = {
+    "mathematics": "12.09",
+    "geography ": "20.10",
+    "conference": "30.09",
+}
+
+today = datetime.now()
+exam_list = []
+
+for subject, date_str in exam_dates.items():
+    exam_d = datetime.strptime(f"{date_str}.{today.year}", "%d.%m.%Y")
+    rem_days = (exam_d - today).days
+    exam_list.append((f"{subject}\t@ {exam_d}", rem_days))
+
+exam_list.sort(key=lambda x: x[1])
+
+print('\n'.join([f'[TODO in {rd:_>2}]: {subject}'
+                 if rd > -1
+                 else f'[DONE: {subject}]'
+                 for subject, rd in exam_list]))
+#+END_SRC
+
+# +REVEAL: split
+#+REVEAL: split:t
+
+#+RESULTS: EXAMdeadlines
+#+begin_example
+[TODO in _4]: mathematics	@ 2024-09-12 00:00:00
+[TODO in 22]: conference	@ 2024-09-30 00:00:00
+[TODO in 42]: geography 	@ 2024-10-20 00:00:00
+#+end_example
+
+
+
+* some Haskell example
+
+#+begin_src haskell -n 0 :results output drawer pp :exports both
+print $ show <$> (Just 56)
+print $ Just 10 >>= \x -> Just $ x + 2
+print $ Nothing >>= \x -> Just $ show x
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Just "56"
+Just 12
+Nothing
+#+end_example
+
+
+* test
+
+#+ATTR_REVEAL: :frag (grow shrink roll-in fade-out none) :frag_idx (4 3 2 1 -)
+   * I will grow.
+   * I will shrink.
+   * I rolled in.
+   * I will fade out.
+   * I don't fragment.
+
+
+* Mathematics
+
+\[ \mathrm{isPrime}(x) = \left\{ \begin{array}{ll} {0}, & \mathrm{if} \ {x \le {1}} \\ {1}, & \mathrm{if} \ {x = {2}} \\ \mathrm{recHelp}\left(x, {3}\right), & \mathrm{otherwise} \end{array} \right. \]
+
+where ~0~ is ~False~ and ~1~ is ~True~
+
+#+REVEAL: split
+
+\[ \mathrm{recHelp}(x, d) = \left\{ \begin{array}{ll} {0}, & \mathrm{if} \ {x \mathbin{\%} {2} = {0}} \\ {1}, & \mathrm{if} \ {d > \left\lfloor{\sqrt{x}}\right\rfloor} \\ {0}, & \mathrm{if} \ {x \mathbin{\%} d = {0}} \\ \mathrm{recHelp}\left(x, d + {2}\right), & \mathrm{otherwise} \end{array} \right. \]
